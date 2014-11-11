@@ -1,5 +1,5 @@
 # multiArity 
-[![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Dependency Status][daviddm-url]][daviddm-image] [![Coverage Status][coveralls-image]][coveralls-url]
+Overload functions by arity.
 
 
 
