@@ -22,6 +22,8 @@ var unsafeMultiply = function (a, b) { return a * b; };
 
 console.log( unsafeMultiply(1) ); //=> NAN. USELESS!!!!!
 
+// Overloading for sensible defaults!!!
+
 var betterMultiply = multiarity(
 	function () { return this.recur(1,1); },
 	function (a) { return this.recur(a, 1); },
@@ -32,6 +34,7 @@ console.log(betterMultiply(7)); //=> 7
 console.log(betterMultiply(7, 2)); //=> 14
 
 
+// Overloading for stack-blowing recursion!!!
 var contrived_factorial = multiarity(
 	function () { return 1;},
 	function (n) {
