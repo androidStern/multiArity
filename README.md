@@ -12,7 +12,7 @@ $ npm install --save multiarity
 ## Usage
 
 ```javascript
-var multiarity = require('multiArity');
+var multiarity = require('multiarity');
 
 // *** FOR THE IMPATIENT ***
 
