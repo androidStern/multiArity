@@ -12,27 +12,25 @@ $ npm install --save multiarity
 ## Usage
 
 ```javascript
+
 var multiarity = require('multiarity');
 
 // *** FOR THE IMPATIENT ***
 
 var unsafeMultiply = function (a, b) { return a * b; };
 
-console.log( unsafeMultiply(1) ); //=> NAN. USELESS!!!!!
-
-// Overloading for sensible defaults!!!
+console.log( "unsafeMultiply:        ", unsafeMultiply(1) ); //=> "unsafeMultiply: NAN"   USELESS!!!!!
 
 var betterMultiply = multiarity(
 	function () { return this.recur(1,1); },
 	function (a) { return this.recur(a, 1); },
 	function (a, b) { return a * b; } );
 
-console.log(betterMultiply()); //=> 1
-console.log(betterMultiply(7)); //=> 7
-console.log(betterMultiply(7, 2)); //=> 14
+console.log("betterMultiply():      ", betterMultiply()); //=> "betterMultiply(): 1"
+console.log("betterMultiply(7):     ", betterMultiply(7)); //=> "betterMultiply(7): 7"
+console.log("betterMultiply(7, 2):  ", betterMultiply(7, 2)); //=> "betterMultiply(7, 2): 14"
 
 
-// Overloading for stack-blowing recursion!!!
 var contrived_factorial = multiarity(
 	function () { return 1;},
 	function (n) {
@@ -42,7 +40,7 @@ var contrived_factorial = multiarity(
 		return this.recur();
 	});
 
-console.log(contrived_factorial(3));
+console.log("contrived_factorial(3):", contrived_factorial(3)); //=> "contrived_factorial(3): 6"
 
 // *** FOR THE PATIENT ***
 
@@ -50,8 +48,8 @@ console.log(contrived_factorial(3));
  * Lets make a function that greets things by name. 
  */
 var sayHelloTo = function (name) {
-	console.log("[line:17]  sayHelloTo was called!");
-	console.log("[line:18]  hello", name);
+	console.log("sayHelloTo was called!");
+	console.log("hello", name);
 };
 
 sayHelloTo("sayHelloTo_GUY"); // LOGS: sayHelloTo was called! \n "hello sayHelloTo_GUY"
@@ -72,9 +70,9 @@ sayHelloTo(); // LOGS: sayHelloTo was called! \n hello undefined
 
 var sayHelloWithDefault = function () {
 	if (arguments.length > 0) {
-		console.log("[line:44]  hello", arguments[0]);
+		console.log("hello", arguments[0]);
 	} else {
-		console.log("[line:46]  hello world");
+		console.log("hello world");
 	}
 };
 
@@ -100,12 +98,12 @@ sayHelloWithDefault("sayHelloWithDefault_GUY"); //LOGS: "hello sayHelloWithDefau
  * 	(2.b) use 2.a when no arguments are provided
  *
  *
- * Our origional implamentation of `sayHelloTo` will do nicely for intent 1.
+ * Our original implamentation of `sayHelloTo` will do nicely for intent 1.
  * 
  * We could even re-use it for 2.a:
  * 		`sayHelloTo("world")` will return "hello" + "world".
  * 
- * Now finaly we need something for 2.b. Perhaps, a function that delegates
+ * Now finally we need something for 2.b. Perhaps, a function that delegates
  * to several other functions depending on the number of arguments?
  */
 
@@ -125,7 +123,7 @@ sayHelloSingleArity("sayHelloSingleArity_GUY"); // LOGS: sayHelloTo was called! 
 try {
 	sayHelloSingleArity(); // ERROR!
 } catch(e) {
-	console.log("[line:97] ",e);
+	console.log(e);
 }
 
 
@@ -141,12 +139,12 @@ var sayHelloDoubleArity = multiarity({
 		/**
 		 * Within any of the functions passed into the 
 		 * multiarity combinator `this.recur` is a 
-		 * refrence to the new function that the multiarity combinator
+		 * reference to the new function that the multiarity combinator
 		 * will return.
 		 *
 		 * So: `this.recur("world") === sayHelloDoubleArity("world");`
 		 */
-		console.log("[line:118] sayHelloDoubleArity called with 0 arguments");
+		console.log("sayHelloDoubleArity called with 0 arguments");
 		this.recur("world");
 	}
 });
@@ -161,7 +159,7 @@ sayHelloDoubleArity("sayHelloDoubleArity_GUY");
 
 /**
  * And this makes sense too, the zero argument version is dispatched to,
- * which simply recals the function (a la this.recur) with 1 argument of "world".
+ * which simply re-calls the function (a la this.recur) with 1 argument of "world".
  * The one argument call dispatches to sayHelloTo as it always does and 
  * the world is once again greeted by a computer.
  */
@@ -176,7 +174,7 @@ sayHelloDoubleArity();
  */
 
 var sayHelloLikeAPro = multiarity(
-	function(name){ console.log("[LINE:143] hello pro", name); },
+	function(name){ console.log("hello pro", name); },
 	function(){ this.recur("world"); });
 
 
