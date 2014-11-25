@@ -63,7 +63,7 @@ describe('multiarity', function () {
       var onlyOneIsFalse = multiarity({
         1: function () {return false; }
       });
-      expect(onlyOneIsFalse).to.throw("wrong number of args: 0");
+      expect(onlyOneIsFalse).to.throw("Cannot call method \'apply\' of undefined");
     });
 
     it("this.recur should call the function recursivley [1]", function (){

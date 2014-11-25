@@ -21,11 +21,11 @@ if (process.env.CI) {
 
 gulp.task('build', function(cb) {
   gulp.src(paths.source)
-    .pipe(plugins.sourcemaps.init())
-    .pipe(plugins.sweetjs({
-      modules: ['lambda-jam/macro']
-    }))
-    .pipe(plugins.sourcemaps.write('.'))
+    // .pipe(plugins.sourcemaps.init())
+    // .pipe(plugins.sweetjs({
+    //   modules: ['lambda-jam/macro']
+    // }))
+    // .pipe(plugins.sourcemaps.write('.'))
     .pipe(gulp.dest('build'))
     .on('end', cb)
     .on('error', noop);

@@ -1,7 +1,7 @@
 {
   "name": "multiarity",
   "description": "",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "homepage": "https://github.com/androidStern/multiarity",
   "bugs": "https://github.com/androidStern/multiarity/issues",
   "license": "MIT",
@@ -15,10 +15,9 @@
     "url": "https://github.com/androidStern/multiarity"
   },
   "keywords": [],
-  "dependencies": {
-    "lodash": "^2.4.1"
-  },
+  "dependencies": {},
   "devDependencies": {
+    "lodash": "^2.4.1",
     "gulp": "^3.8.8",
     "gulp-util": "^3.0.1",
     "gulp-sourcemaps": "^1.2.8",
